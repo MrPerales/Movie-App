@@ -1,14 +1,16 @@
+import Card from "components/Card";
+import CategoryList from "components/CategoryList";
 import React from "react";
 import { API, API_Bearer, API_KEY } from "secret";
 
-const API_TRENDING=`${API}/trending/movie/day`
-const options={
-    method:'GET',
+const API_TRENDING = `${API}/trending/movie/day`
+const options = {
+    method: 'GET',
     headers: {
         accept: 'application/json',
         Authorization: API_Bearer
-      }
-    
+    }
+
 }
 
 function HomePage() {
@@ -18,16 +20,30 @@ function HomePage() {
     React.useEffect(() => {
         fetch(API_TRENDING, options)
             .then(resp => resp.json())
-            .then(data => setData(data))
+            .then(({ _, results }) => setData(results))
             .catch(error => console.log(error))
     }, [])
-    console.log(data);
+    // console.log(data);
 
     return (
         <>
-            <h1 className="text-orange-700 text-5xl">
-                Hello world!
-            </h1>
+            <section 
+                className="grid overflow-x-scroll justify-items-stretch
+                    overflow-y-hidden whitespace-nowrap overscroll-x-contain snap-x snap-center
+                "
+            >
+                <CategoryList />
+            </section>
+            <h2>Trending Movies</h2>
+            <section className="trendingPreview-movieList">
+                {data.map(movie =>
+                    <Card
+                        poster={movie.poster_path}
+                        titleSection={'Trending Movies'}
+                        title={movie.title}
+                    ></Card>
+                )}
+            </section>
         </>
     )
 }
