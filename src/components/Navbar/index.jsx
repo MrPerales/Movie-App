@@ -1,6 +1,7 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs"
 import { AiOutlineUser } from "react-icons/ai"
+import Link from "next/link";
 function Navbar() {
     const [openInput, setOpenInput] = React.useState(false)
 
@@ -12,10 +13,12 @@ function Navbar() {
     return (
         <>
             <nav
-                className="flex justify-between h-12 w-full p-8 fixed bg-white/[0.2]"
+                className="flex justify-between h-12 w-full p-8 fixed top-0 bg-white/[0.2]"
             >
-                <div>
-                    <h1>Cinema APP</h1>
+                <div> 
+                    <Link href={'/'}>
+                        <h1>Cinema APP</h1>
+                    </Link>
                 </div>
                 <div >
                     <ul className="flex justify-center gap-10">

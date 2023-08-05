@@ -132,3 +132,4 @@ dist
 
 # api and apikey
 secret.js
+config.txt

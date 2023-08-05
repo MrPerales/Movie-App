@@ -7,7 +7,15 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'background': 'rgba(36, 42, 50, 1)',
+        'score':'rgba(255, 135, 0, 1)',
+        'description':'rgba(146, 146, 157, 1)',
+        'body':'rgb(46, 52, 60,1)'
+
+      }
+    },
   },
   plugins: [],
 }

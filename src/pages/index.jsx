@@ -1,5 +1,6 @@
 import Card from "components/Card";
 import CategoryList from "components/CategoryList";
+import Link from "next/link";
 import React from "react";
 import { API, API_Bearer, API_KEY } from "secret";
 
@@ -27,7 +28,7 @@ function HomePage() {
 
     return (
         <>
-            <section 
+            <section
                 className="grid overflow-x-scroll justify-items-stretch
                     overflow-y-hidden whitespace-nowrap overscroll-x-contain snap-x snap-center
                 "
@@ -37,11 +38,13 @@ function HomePage() {
             <h2>Trending Movies</h2>
             <section className="trendingPreview-movieList">
                 {data.map(movie =>
-                    <Card
-                        poster={movie.poster_path}
-                        titleSection={'Trending Movies'}
-                        title={movie.title}
-                    ></Card>
+                    <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>
+                        <Card
+                            poster={movie.poster_path}
+                            titleSection={'Trending Movies'}
+                            title={movie.title}
+                        ></Card>
+                    </Link>
                 )}
             </section>
         </>
