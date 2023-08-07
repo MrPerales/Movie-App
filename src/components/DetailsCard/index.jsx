@@ -5,11 +5,11 @@ import { PiStarThin } from "react-icons/pi"
 function DetailCard({ movie }) {
 
     const styleSection = {
-        // width: '100%',
+        width: '100%',
         height: 'auto',
         display: 'grid',
         'place-content': 'center',
-        'grid-template-columns': 'repeat(auto-fit, minmax(450px,1fr))',
+        'grid-template-columns': 'repeat(auto-fit, minmax(300px,1fr))',
         gap: '10px',
         // 'outline': '1px solid',
         'padding':'0px 40px',
@@ -30,14 +30,14 @@ function DetailCard({ movie }) {
                 <img src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} alt={movie?.title} />
             </figure>
 
-            <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 place-content-center w-full">
 
-                <div className="flex items-center justify-between">
-                    <h1>{movie?.title}</h1>
-                    <span className="flex items-center gap-1"><PiStarThin />{movie?.vote_average}</span>
+                <div className="flex items-center justify-between w-3/4">
+                    <h1 className="text-4xl">{movie?.title}</h1>
+                    <span className="flex items-center gap-2 text-orange-300"><PiStarThin />{movie?.vote_average}</span>
                 </div>
-                <div >
-                    <ul className="flex gap-4 mb-6">
+                <div className="w-3/4">
+                    <ul className="flex gap-4 mb-6 mt-6">
                         {movie?.genres.map(category =>
                             <Link key={category.id} href={`/category${category.name}`}>
                                 <li>
