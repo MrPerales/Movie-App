@@ -21,7 +21,7 @@ function DetailCard({ movie }) {
         display: "flex",
         margin: '0 auto'
     }
-    console.log(movie);
+    // console.log(movie);
 
     return (
         <article style={styleSection}>
@@ -39,7 +39,7 @@ function DetailCard({ movie }) {
                 <div className="w-3/4">
                     <ul className="flex gap-4 mb-6 mt-6">
                         {movie?.genres.map(category =>
-                            <Link key={category.id} href={`/category${category.name}`}>
+                            <Link key={category.id} href={`/category/${category.id}?${category.name}`}>
                                 <li>
                                     {category.name}
                                 </li>
