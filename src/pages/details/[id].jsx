@@ -34,7 +34,7 @@ function MovieDetail() {
             fetch(`${API}/movie/${id}`, options)
                 .then(resp => resp.json())
                 .then(data => setMovie(data))
-                .then(error => console.log(error))
+                .catch(error => console.log(error))
         }
     }, [id])
 

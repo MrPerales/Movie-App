@@ -1,15 +1,24 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs"
 import { AiOutlineUser } from "react-icons/ai"
+import { useRouter } from 'next/router'
 import Link from "next/link";
 function Navbar() {
     const [openInput, setOpenInput] = React.useState(false)
-
+    const router=useRouter();
     const openSearch = () => {
         // console.log('click');
         setOpenInput(!openInput)
     }
+    const handleOnKeyDown=(e)=>{
+        // e.key
+        if(e.key==='Enter'){
 
+            const query=e.target.value
+            router.push(`/search/${query}`);
+        }
+
+    }
     return (
         <>
             <nav
@@ -25,9 +34,10 @@ function Navbar() {
                         {openInput && (
                             <li >
                                 <input
-                                    className="rounded-full h-7 text-sm px-4 bg-transparent "
+                                    className="rounded-full h-7 text-sm px-4 bg-black/[0.2] text-white"
                                     placeholder="Search"
                                     type="text"
+                                    onKeyDown={handleOnKeyDown}
                                 />
 
                             </li>
