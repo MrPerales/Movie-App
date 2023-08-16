@@ -13,7 +13,7 @@ function Navbar() {
     return (
         <>
             <nav
-                className="flex justify-between h-12 w-full p-8 fixed top-0 bg-white/[0.2]"
+                className="flex justify-between h-12 w-full p-8 fixed top-0 bg-white/[0.2] z-10"
             >
                 <div> 
                     <Link href={'/'}>

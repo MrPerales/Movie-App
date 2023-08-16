@@ -1,5 +1,6 @@
 import Card from "components/Card";
 import CategoryList from "components/CategoryList";
+import TopMovies from "components/TopMovies";
 import Link from "next/link";
 import React from "react";
 import { API, API_Bearer, API_KEY } from "secret";
@@ -26,17 +27,25 @@ function HomePage() {
     }, [])
     // console.log(data);
 
+
     return (
         <>
+            <TopMovies 
+                movies={data}
+            >
+
+            </TopMovies>
+
+
             <section
                 className="grid overflow-x-scroll justify-items-stretch
-                    overflow-y-hidden whitespace-nowrap overscroll-x-contain snap-x snap-center
-                "
+                    overflow-y-hidden whitespace-nowrap overscroll-x-contain snap-x snap-center"
             >
                 <CategoryList />
             </section>
             <h2>Trending Movies</h2>
-            <section className="trendingPreview-movieList">
+                
+            <section className="trendingPreview-movieList" style={{marginLeft:'20px'}} >
                 {data.map(movie =>
                     <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>
                         <Card
