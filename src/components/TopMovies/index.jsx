@@ -10,7 +10,7 @@ function TopMovies({ movies }) {
 
 
     const topMovies = movies.filter(movie => movie.vote_average >= 8);
-    console.log(topMovies);
+    // console.log(topMovies);
     const urlImages = 'https://image.tmdb.org/t/p/original'
 
     // slice
@@ -36,7 +36,7 @@ function TopMovies({ movies }) {
                 css-mode="true"
                 navigation="true"
                 pagination="true"
-                scrollbar="true"
+                // scrollbar="true"
             >
 
                 {topMovies?.map((movie) =>

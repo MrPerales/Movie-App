@@ -43,7 +43,7 @@ function HomePage() {
             >
                 <CategoryList />
             </section>
-            <h2>Trending Movies</h2>
+            <h2 style={{fontSize:'20px',color:'#fff',margin:'20px'}} >Trending Movies</h2>
                 
             <section className="trendingPreview-movieList" style={{marginLeft:'20px'}} >
                 {data.map(movie =>

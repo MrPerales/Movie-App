@@ -1,6 +1,7 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs"
 import { AiOutlineUser } from "react-icons/ai"
+import {FcLike} from 'react-icons/fc'
 import { useRouter } from 'next/router'
 import Link from "next/link";
 function Navbar() {
@@ -46,7 +47,16 @@ function Navbar() {
                         <li className="text-xl cursor-pointer" onClick={() => openSearch()} >
                             <BsSearch />
                         </li>
-                        <li className="text-xl"><AiOutlineUser /></li>
+                        <li>
+                            <Link href={`/favorite`}>
+                                <FcLike/> 
+                            </Link>
+                        </li>
+                        <li className="text-xl">
+                            <Link href={'/profile'}>
+                                <AiOutlineUser />
+                            </Link>
+                        </li>
 
 
                     </ul>

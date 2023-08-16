@@ -26,7 +26,7 @@ function CategoryList() {
 
     return (
 
-        <ul className="flex justify-self-center content-center gap-2 px-2 mt-3 text-white" >
+        <ul className="flex justify-self-center content-center gap-3 px-2 py-3 mt-3 text-white " >
             {categories.map(category =>
                 <Link key={category.id} href={`/category/${category.id}-${category.name}`}>
                     <li className="cursor-pointer">{category.name}</li>
