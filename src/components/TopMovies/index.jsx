@@ -1,12 +1,32 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { PiStarThin } from "react-icons/pi"
+import { API, API_Bearer, API_KEY } from "secret";
+
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 // register Swiper custom elements
 register();
 
+const API_TRENDING = `${API}/trending/movie/day`
+const options = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: API_Bearer
+    }
 
-function TopMovies({ movies }) {
+}
+
+function TopMovies() {
+    const [movies,setMovies]=useState([]);
+
+    useEffect(()=>{
+        fetch(API_TRENDING,options)
+            .then(resp=> resp.json())
+            .then(({data,results})=>setMovies(results))
+            .catch(error=>console.log(error))
+    },[])
 
 
     const topMovies = movies.filter(movie => movie.vote_average >= 8);
@@ -20,7 +40,7 @@ function TopMovies({ movies }) {
         // let mql = window.matchMedia("(max-width: 600px)");
         isResponsive = window.screen.availWidth >= 700 ? "2" : "1";
 
-        console.log(window.screen.availWidth);
+        // console.log(window.screen.availWidth);
     }
 
     return (

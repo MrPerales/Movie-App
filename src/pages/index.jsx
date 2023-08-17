@@ -2,8 +2,10 @@ import Card from "components/Card";
 import CategoryList from "components/CategoryList";
 import TopMovies from "components/TopMovies";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { API, API_Bearer, API_KEY } from "secret";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 
 const API_TRENDING = `${API}/trending/movie/day`
 const options = {
@@ -18,23 +20,24 @@ const options = {
 function HomePage() {
 
     const [data, setData] = React.useState([])
+    const [page, setPage] = useState(1);
+
 
     React.useEffect(() => {
-        fetch(API_TRENDING, options)
+
+        fetch(`${API_TRENDING}?page=${page}`, options)
             .then(resp => resp.json())
-            .then(({ _, results }) => setData(results))
+            .then(({ _, results }) =>
+                setData(prevState => [...prevState,...results])
+            )
             .catch(error => console.log(error))
-    }, [])
+    }, [page])
     // console.log(data);
 
 
     return (
         <>
-            <TopMovies 
-                movies={data}
-            >
-
-            </TopMovies>
+            <TopMovies/>
 
 
             <section
@@ -43,19 +46,38 @@ function HomePage() {
             >
                 <CategoryList />
             </section>
-            <h2 style={{fontSize:'20px',color:'#fff',margin:'20px'}} >Trending Movies</h2>
-                
-            <section className="trendingPreview-movieList" style={{marginLeft:'20px'}} >
-                {data.map(movie =>
-                    <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>
-                        <Card
-                            poster={movie.poster_path}
-                            titleSection={'Trending Movies'}
-                            title={movie.title}
-                        ></Card>
-                    </Link>
-                )}
-            </section>
+
+            <h2
+                style={{
+                    fontSize: '20px',
+                    color: '#fff',
+                    margin: '20px'
+                }}
+            >
+                Trending Movies
+            </h2>
+
+            <InfiniteScroll
+                dataLength={data.length}
+                next={() => setPage(prevState => prevState + 1)}
+                hasMore={true}
+
+                // cambiar por un componente loading 
+                loader={<h2>loading.....</h2>}
+            >
+                <section className="trendingPreview-movieList" style={{ marginLeft: '20px' }} >
+                    {data.map(movie =>
+                        <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>
+                            <Card
+                                poster={movie.poster_path}
+                                titleSection={'Trending Movies'}
+                                title={movie.title}
+                            ></Card>
+                        </Link>
+                    )}
+                </section>
+            </InfiniteScroll>
+
         </>
     )
 }
