@@ -1,6 +1,6 @@
 import React from "react";
-import styles from '../../Styles/skeleton.module.css'
-function CardSkeleton() {
+import styles from '../../../Styles/skeleton.module.css'
+function SkeletonCard() {
 
     return (
         <>
@@ -16,4 +16,4 @@ function CardSkeleton() {
         </>
     )
 }
-export default CardSkeleton;
+export default SkeletonCard;

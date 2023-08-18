@@ -1,0 +1,17 @@
+.section{
+    display: grid;
+    overflow-x: scroll;
+    justify-items: stretch;
+    overflow-y: hidden;
+    white-space: nowrap;
+    overscroll-behavior-x: contain;
+    scroll-snap-align: center;
+}
+.titleTrending{
+    font-size: 20px;
+    color: #fff;
+    margin: 20px;
+}
+.trendingPreviewMovieList{
+    margin-left: 20px;
+}

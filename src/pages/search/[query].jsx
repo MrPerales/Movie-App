@@ -62,7 +62,7 @@ function MoviesBySearch() {
                 hasMore={true}
 
                 // cambiar por un componente loading 
-                loader={<h2>loading.....</h2>}
+                loader={<h2>loading...</h2>}
             >
 
                 <article >

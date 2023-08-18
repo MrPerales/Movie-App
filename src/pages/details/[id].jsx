@@ -5,6 +5,7 @@ import DetailCard from "components/DetailsCard";
 import Card from "components/Card";
 import Link from "next/link";
 import styles from '../../Styles/detailsPage.module.css'
+import SkeletonDetailCard from "components/SkeletonLoadings/skeletonDetailsCard";
 
 const options = {
     method: 'GET',
@@ -48,6 +49,11 @@ function MovieDetail() {
     // console.log(movie);
     return (
         <>
+
+            {/* <section className={styles.sectionDetailCard}>
+                <SkeletonDetailCard/>
+            </section> */}
+
             <section className={styles.sectionDetailCard}>
 
                 <DetailCard movie={movie} />

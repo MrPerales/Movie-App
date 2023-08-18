@@ -5,8 +5,9 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { API, API_Bearer, API_KEY } from "secret";
 import InfiniteScroll from "react-infinite-scroll-component";
-import CardSkeleton from "components/CardSkeleton";
-
+import SkeletonCard from "components/SkeletonLoadings/skeletonCard";
+import styles from '../Styles/index.module.css'
+import SkeletonTopMovies from "components/SkeletonLoadings/skeletonTopMovies";
 
 const API_TRENDING = `${API}/trending/movie/day`
 const options = {
@@ -38,26 +39,20 @@ function HomePage() {
 
     return (
         <>
+            {/* <SkeletonTopMovies/> */}
+
+
             <TopMovies/>
 
 
-            <section
-                className="grid overflow-x-scroll justify-items-stretch
-                    overflow-y-hidden whitespace-nowrap overscroll-x-contain snap-x snap-center"
-            >
+            <section className={styles.section}>
                 <CategoryList />
             </section>
 
-            <h2
-                style={{
-                    fontSize: '20px',
-                    color: '#fff',
-                    margin: '20px'
-                }}
-            >
+            <h2 className={styles.titleTrending} >
                 Trending Movies
             </h2>
-            <CardSkeleton/>
+            {/* <CardSkeleton/> */}
 
             <InfiniteScroll
                 dataLength={data.length}
@@ -65,9 +60,9 @@ function HomePage() {
                 hasMore={true}
 
                 // cambiar por un componente loading 
-                loader={<h2>loading.....</h2>}
+                loader={<SkeletonCard></SkeletonCard>}
             >
-                <section className="trendingPreview-movieList" style={{ marginLeft: '20px' }} >
+                <section className={styles.trendingPreviewMovieList}>
                     {data.map(movie =>
                         <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>
                             <Card

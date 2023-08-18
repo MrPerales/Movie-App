@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { API, API_Bearer } from "secret";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styles from '../../Styles/categoryPage.module.css'
+import SkeletonCard from "components/SkeletonLoadings/skeletonCard";
 
 function CategoriesMovies() {
 
@@ -53,7 +54,7 @@ function CategoriesMovies() {
                 hasMore={true}
                 
                 // cambiar por un componente loading 
-                loader={<h2>loading.....</h2>}
+                loader={<SkeletonCard></SkeletonCard>}
             >
                 <article className={styles.article}>
 
