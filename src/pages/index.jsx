@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { API, API_Bearer, API_KEY } from "secret";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CardSkeleton from "components/CardSkeleton";
-import ''
 
 
 const API_TRENDING = `${API}/trending/movie/day`
