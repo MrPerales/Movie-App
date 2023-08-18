@@ -1,0 +1,14 @@
+.section{
+    margin-top: 60px;
+}
+.titleCategory{
+    font-size: 30px;
+    color: #fff;
+    padding: 20px;
+}
+.article{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap: 10px 0;
+    padding: 20px;
+}

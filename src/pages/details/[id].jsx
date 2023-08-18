@@ -4,6 +4,8 @@ import { API, API_Bearer } from "secret";
 import DetailCard from "components/DetailsCard";
 import Card from "components/Card";
 import Link from "next/link";
+import styles from '../../Styles/detailsPage.module.css'
+
 const options = {
     method: 'GET',
     headers: {
@@ -11,12 +13,6 @@ const options = {
         Authorization: API_Bearer
     }
 
-}
-const styleSection = {
-    width: '1280px',
-    display: ' flex',
-    'flex-direction': 'column',
-    'padding-left': '20px',
 }
 
 function MovieDetail() {
@@ -52,40 +48,15 @@ function MovieDetail() {
     // console.log(movie);
     return (
         <>
-            <section
-                style={{
-                    width: '100%',
-                    display: 'grid',
-                    'place-content': 'center',
-                    'margin-top': '15px',
-                    // outline: '1px solid blue',
-
-                }}>
+            <section className={styles.sectionDetailCard}>
 
                 <DetailCard movie={movie} />
             </section>
 
-            <section
-                style={{
-                    width: '100%',
-                    display: 'flex',
-                    // outline: '1px solid',
-                    justifyContent: 'center',
-                    'margin-top': '20px'
-                }}
-            >
-                <article style={styleSection}>
-                    <h2 style={{ 'color': '#fff', fontSize: '25px','padding-left':'10px' }}>Related Movies</h2>
-                    <div style={{
-                        'overflow-x': 'scroll',
-                        'overflow-y': 'hidden',
-                        'white-space': 'nowrap',
-                        'gap': '2.5rem',
-                        'overscroll-behavior-x': 'contain',
-                        'scroll-snap-type': 'x proximity',
-                        // outline: '1px solid red',
-                        'padding': '10px'
-                    }}>
+            <section className={styles.sectionRelatedMoviesContainer}   >
+                <article className={styles.articleRelatedMovies}>
+                    <h2>Related Movies</h2>
+                    <div className={styles.relatedCard}>
 
                         {relatedMovies?.map(movie =>
                             <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>

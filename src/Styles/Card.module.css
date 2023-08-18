@@ -1,0 +1,9 @@
+.movieContainer{
+    display: inline-block;
+    width: 160px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+.movieImg{
+    border-radius: 12px;
+}

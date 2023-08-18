@@ -4,7 +4,7 @@ import { API, API_Bearer } from "secret";
 import Link from "next/link";
 import Card from "components/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import styles from '../../Styles/searchPage.module.css'
 
 const options = {
     method: 'GET',
@@ -54,13 +54,8 @@ function MoviesBySearch() {
     // console.log(searchListMovies);
 
     return (
-        <section
-            style={{
-                display: 'grid',
-                margin: '80px 40px',
-            }}
-        >
-            <h1 style={{ fontSize: '20px', color: '#fff', marginBottom: '15px' }}> Search "{query}" </h1>
+        <section className={styles.section}>
+            <h1> Search "{query}" </h1>
             <InfiniteScroll
                 dataLength={searchListMovies.length}
                 next={() => setPage(prevState => prevState + 1)}

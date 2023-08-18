@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PiStarThin } from "react-icons/pi"
 import { API, API_Bearer, API_KEY } from "secret";
+import styles from '../../Styles/topMovies.module.css'
 
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
@@ -44,7 +45,7 @@ function TopMovies() {
     }
 
     return (
-        <section style={{ width: '100%', marginTop: '20px' }}>
+        <section className={styles.section}>
 
 
             <swiper-container
@@ -64,55 +65,25 @@ function TopMovies() {
 
                     <swiper-slide key={movie.id}>
 
-                        <div>
+                        <div >
 
-                            <div
-                                className="bg-black/[0.3]"
-                                style={{
-                                    margin: '50px',
-                                    borderRadius: '10px',
-                                    // width:'40%',
-                                    color: 'white',
-                                    padding: '10px 15px'
-                                }}
-                            >
+                            <div className={styles.topMovieContainer}>
 
                                 <img
                                     src={`${urlImages}${movie.backdrop_path}`}
                                     alt={movie.title}
 
-                                    style={{ borderRadius: '10px', }}
+                                    // style={{ borderRadius: '10px', }}
                                 />
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        alignContent: 'center',
-                                        justifyContent: 'space-between',
-                                        marginBottom: '25px',
-                                        marginTop: '10px'
-                                    }}
-                                >
-                                    <h1
-                                        style={{ fontSize: '20px', }}
-                                    >
-                                        {movie.title}
-                                    </h1>
-                                    <span className="flex items-center gap-2 text-orange-300"><PiStarThin />{movie?.vote_average}</span>
+                                <div className={styles.title}>
+                                    <h1>{movie.title}</h1>
+
+                                    <span><PiStarThin />{movie?.vote_average}</span>
                                 </div>
 
 
                                 <Link href={`/details/${movie.id}?${movie.title}`}>
-                                    <button
-                                        style={{
-
-                                            width: '150px',
-                                            height: '40px',
-                                            border: '2px solid #0066cc',
-                                            borderRadius: '10px',
-                                            fontSize: '18px'
-                                            // borderRadius:'10px',
-                                        }}
-                                    >
+                                    <button className={styles.learnMoreButton}>
                                         Learn more
                                     </button>
                                 </Link>

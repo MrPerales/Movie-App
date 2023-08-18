@@ -1,0 +1,69 @@
+.container_notFoundPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.notFoundPage_message {
+    width: 42rem;
+    height: 42rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    /* outline: 1px solid; */
+    margin-left: 1rem;
+}
+
+.title {
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    color: #fff;
+}
+
+.title h1 {
+    font-weight: 700;
+    font-size: 7rem;
+}
+
+.title p {
+    font-weight: 100;
+    font-size: 2.2rem;
+    padding: 1rem;
+    /* margin-top: 2rem; */
+}
+.text_404{
+    width: 30rem;
+    height: 5rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: #fff;
+}
+.text_404 p{
+    font-size: 1.1rem;
+    font-weight: 300;
+    /* outline: 1px solid; */
+}
+.text_404 button{
+    width: 50%;
+    /* font-size: 1.3rem; */
+    font-weight: 600;
+    border-color: #3A49F9;
+    border-radius: .5rem;
+    background-color: #FFF;
+    color: #3A49F9;
+    cursor: pointer;
+}
+.text_404 button:hover{
+    background-color: #3A49F9;
+    color: #FFF;
+    border:none;   
+}

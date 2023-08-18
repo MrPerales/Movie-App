@@ -1,0 +1,34 @@
+.sectionDetailCard{
+    width: 100%;
+    display: grid;
+    place-content: center;
+    margin-top: 15px;
+}
+.sectionRelatedMoviesContainer{
+    width: 100%; /* o 100%*/
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+.articleRelatedMovies{
+    width: 1280px;
+    display: flex;
+    flex-direction: column ;
+    padding-left: 20px;
+
+}
+.articleRelatedMovies h2{
+    color: #fff;
+    font-size: 25px;
+    padding-left: 10px;
+}
+.relatedCard{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap: 2.5rem;
+    overscroll-behavior: contain;
+    scroll-snap-type: x proximity;
+    padding: 10px;
+}
