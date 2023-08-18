@@ -1,0 +1,9 @@
+.section{
+    display: grid;
+    margin: 80px 40px;
+}
+.section h1{
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 15px;
+}

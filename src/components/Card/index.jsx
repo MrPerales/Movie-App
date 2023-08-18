@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from '../../Styles/Card.module.css'
 function Card({ poster, title }) {
     const urlImages = 'https://image.tmdb.org/t/p/w300'
 
@@ -7,11 +7,11 @@ function Card({ poster, title }) {
     return (
         <>
 
-            <div className="movie-container w-40 inline-block cursor-pointer mr-3 " >
+            <div className={styles.movieContainer} >
                 <img
                     src={`${urlImages}/${poster}`}
                     alt={title}
-                    className="movie-img rounded-xl"
+                    className={styles.movieImg}
                 />
             </div>
 

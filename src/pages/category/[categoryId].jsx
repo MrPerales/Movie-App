@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { API, API_Bearer } from "secret";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import styles from '../../Styles/categoryPage.module.css'
 
 function CategoriesMovies() {
 
@@ -23,7 +23,7 @@ function CategoriesMovies() {
             page === 1
                 ? `${API}/discover/movie?&with_genres=${id}`
                 : `${API}/discover/movie?page=${page}&with_genres=${id}`
-        console.log(url);
+        // console.log(url);
         fetch(url, {
             method: 'GET',
             headers: {
@@ -36,23 +36,15 @@ function CategoriesMovies() {
                 setCategoryMovies(prevState => [...prevState, ...results])
             })
             .catch(error => console.log(error))
-        console.log(categoryMovies);
+        // console.log(categoryMovies);
     }, [categoryId,page])
 
 
 
     return (
 
-        <section
-            style={{ 'margin-top': '60px' }}
-        >
-            <h1 style={{
-                fontSize: '30px',
-                color: '#fff',
-                'padding': '20px'
-
-
-            }}>
+        <section className={styles.section}  >
+            <h1 className={styles.titleCategory} >
                 {categoryName} Movies
             </h1>
             <InfiniteScroll
@@ -63,14 +55,7 @@ function CategoriesMovies() {
                 // cambiar por un componente loading 
                 loader={<h2>loading.....</h2>}
             >
-                <article
-
-                    style={{
-                        display: "grid",
-                        'grid-template-columns': 'repeat(auto-fill, minmax(200px,1fr))',
-                        gap: '10px 0',
-                        padding: '20px'
-                    }}>
+                <article className={styles.article}>
 
                     {categoryMovies?.map(movie =>
                         <div>

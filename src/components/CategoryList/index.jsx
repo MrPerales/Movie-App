@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { API_Bearer } from "secret";
+import styles from '../../Styles/categoryList.module.css'
 
 const UrlList = 'https://api.themoviedb.org/3/genre/movie/list'
 const options = {
@@ -26,10 +27,10 @@ function CategoryList() {
 
     return (
 
-        <ul className="flex justify-self-center content-center gap-3 px-2 py-3 mt-3 text-white " >
+        <ul className={styles.categoryList} >
             {categories.map(category =>
                 <Link key={category.id} href={`/category/${category.id}-${category.name}`}>
-                    <li className="cursor-pointer">{category.name}</li>
+                    <li >{category.name}</li>
                 </Link>
             )}
         </ul>

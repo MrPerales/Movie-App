@@ -1,0 +1,54 @@
+.article {
+    width: 100%;
+    height: auto;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 10px;
+    padding: 0px 40px;
+    margin-top: 64px;
+    color: #fff;
+}
+
+.figure {
+    width: 350px;
+    display: flex;
+    margin: 0 auto;
+    
+}
+.infoContainer{
+    width: 100%;
+    display: grid;
+    place-content: center;
+    grid-template-columns:repeat(1, minmax(0, 1fr));
+    
+}
+.detailTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+}
+.detailTitle h1{
+    font-size: 2.25rem/* 36px */;
+    line-height: 2.5rem/* 40px */;
+}
+.detailTitle span{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+   /* color: blue; */
+    color: rgb(253 186 116 / 1);
+}
+.genreList{
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    margin-top: 24px;
+}
+.descriptionContainer{
+    width: 75%;
+}
+.descriptionContainer h2{
+    margin-bottom: 20px;
+}
