@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { API, API_Bearer } from "secret";
 import DetailCard from "components/DetailsCard";
@@ -6,6 +6,8 @@ import Card from "components/Card";
 import Link from "next/link";
 import styles from '../../Styles/detailsPage.module.css'
 import SkeletonDetailCard from "components/SkeletonLoadings/skeletonDetailsCard";
+import { Context } from "context";
+import SkeletonCard from "components/SkeletonLoadings/skeletonCard";
 
 const options = {
     method: 'GET',
@@ -20,6 +22,8 @@ function MovieDetail() {
 
     const [movie, setMovie] = useState();
     const [relatedMovies, setRelatedMovies] = useState();
+    const {loading,setLoading}=useContext(Context);
+
     const router = useRouter();
     const { query: { id } } = router;
     // console.log(router);
@@ -32,6 +36,7 @@ function MovieDetail() {
                 .then(resp => resp.json())
                 .then(data => setMovie(data))
                 .catch(error => console.log(error))
+                .finally(()=>setLoading(false))
         }
     }, [id])
 
@@ -42,6 +47,8 @@ function MovieDetail() {
                 .then(resp => resp.json())
                 .then(({ data, results }) => setRelatedMovies(results))
                 .catch(error => console.log(error))
+                .finally(()=>setLoading(false))
+
         }
     }, [id])
     console.log(relatedMovies);
@@ -50,9 +57,11 @@ function MovieDetail() {
     return (
         <>
 
-            {/* <section className={styles.sectionDetailCard}>
-                <SkeletonDetailCard/>
-            </section> */}
+            {loading &&
+                <section className={styles.sectionDetailCard}>
+                    <SkeletonDetailCard/>
+                </section>
+            }
 
             <section className={styles.sectionDetailCard}>
 
@@ -63,6 +72,8 @@ function MovieDetail() {
                 <article className={styles.articleRelatedMovies}>
                     <h2>Related Movies</h2>
                     <div className={styles.relatedCard}>
+
+                        {loading && <SkeletonCard/>}
 
                         {relatedMovies?.map(movie =>
                             <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>

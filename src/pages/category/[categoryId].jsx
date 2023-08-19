@@ -1,15 +1,18 @@
 import Card from "components/Card";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { API, API_Bearer } from "secret";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styles from '../../Styles/categoryPage.module.css'
 import SkeletonCard from "components/SkeletonLoadings/skeletonCard";
+import { Context } from "context";
 
 function CategoriesMovies() {
 
     const [categoryMovies, setCategoryMovies] = useState([]);
+    const {loading,setLoading}=useContext(Context);
+
     const router = useRouter();
     const { query: { categoryId } } = router;
 
@@ -37,6 +40,7 @@ function CategoriesMovies() {
                 setCategoryMovies(prevState => [...prevState, ...results])
             })
             .catch(error => console.log(error))
+            .finally(()=>setLoading(false))
         // console.log(categoryMovies);
     }, [categoryId,page])
 
@@ -48,6 +52,11 @@ function CategoriesMovies() {
             <h1 className={styles.titleCategory} >
                 {categoryName} Movies
             </h1>
+
+            {loading && <SkeletonCard/>}
+
+
+
             <InfiniteScroll
                 dataLength={categoryMovies.length}
                 next={() => setPage(prevState => prevState + 1) }

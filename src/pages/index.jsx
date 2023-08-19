@@ -2,12 +2,13 @@ import Card from "components/Card";
 import CategoryList from "components/CategoryList";
 import TopMovies from "components/TopMovies";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { API, API_Bearer, API_KEY } from "secret";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SkeletonCard from "components/SkeletonLoadings/skeletonCard";
 import styles from '../Styles/index.module.css'
 import SkeletonTopMovies from "components/SkeletonLoadings/skeletonTopMovies";
+import { Context } from "context";
 
 const API_TRENDING = `${API}/trending/movie/day`
 const options = {
@@ -23,6 +24,7 @@ function HomePage() {
 
     const [data, setData] = React.useState([])
     const [page, setPage] = useState(1);
+    const { loading, setLoading} = useContext(Context)
 
 
     React.useEffect(() => {
@@ -30,19 +32,20 @@ function HomePage() {
         fetch(`${API_TRENDING}?page=${page}`, options)
             .then(resp => resp.json())
             .then(({ _, results }) =>
-                setData(prevState => [...prevState,...results])
+                setData(prevState => [...prevState, ...results])
             )
             .catch(error => console.log(error))
+            .finally(() => setLoading(false))
     }, [page])
     // console.log(data);
 
 
     return (
         <>
-            {/* <SkeletonTopMovies/> */}
+            {loading && <SkeletonTopMovies />}
 
 
-            <TopMovies/>
+            <TopMovies />
 
 
             <section className={styles.section}>
@@ -52,7 +55,6 @@ function HomePage() {
             <h2 className={styles.titleTrending} >
                 Trending Movies
             </h2>
-            {/* <CardSkeleton/> */}
 
             <InfiniteScroll
                 dataLength={data.length}

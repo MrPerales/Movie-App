@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { API, API_Bearer } from "secret";
 import Link from "next/link";
 import Card from "components/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styles from '../../Styles/searchPage.module.css'
+import { Context } from "context";
+import SkeletonCard from "components/SkeletonLoadings/skeletonCard";
 
 const options = {
     method: 'GET',
@@ -19,8 +21,10 @@ function MoviesBySearch() {
 
     const [searchListMovies, setSearchListMovies] = useState([])
     const [page, setPage] = useState(2)
+    const {loading,setLoading}=useContext(Context);
     const router = useRouter();
     const { query: { query } } = router;
+    
     // console.log(query);
 
     useEffect(() => {
@@ -33,6 +37,7 @@ function MoviesBySearch() {
                     setSearchListMovies(results)
                 })
                 .catch(error => console.log(error))
+                .finally(()=>setLoading(false))
         }
     }, [query]);
     // una forma de solucionar la limpieza del DOM cuando buscas otra pelicula 
@@ -47,6 +52,7 @@ function MoviesBySearch() {
                     setSearchListMovies(prevState => [...prevState, ...results])
                 })
                 .catch(error => console.log(error))
+
         }, [page])
 
     }
@@ -54,6 +60,9 @@ function MoviesBySearch() {
     // console.log(searchListMovies);
 
     return (
+
+
+
         <section className={styles.section}>
             <h1> Search "{query}" </h1>
             <InfiniteScroll
@@ -62,9 +71,9 @@ function MoviesBySearch() {
                 hasMore={true}
 
                 // cambiar por un componente loading 
-                loader={<h2>loading...</h2>}
+                loader={<SkeletonCard/>}
             >
-
+                {loading &&  <SkeletonCard/>  }
                 <article >
                     {searchListMovies?.map(movie =>
                         <Link key={movie.id} href={`/details/${movie.id}?${movie.title}`}>
